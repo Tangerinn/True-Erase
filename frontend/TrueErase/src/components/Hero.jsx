@@ -1,7 +1,8 @@
 import React from 'react';
 import '../style/Hero.css'; // The styles for this component
 
-const Hero = () => {
+// 1. Accept the onDownloadClick prop
+const Hero = ({ onDownloadClick }) => {
   return (
     <section id="home" className="hero">
       <div className="container hero__container">
@@ -19,9 +20,14 @@ const Hero = () => {
 
         {/* Call-to-Action Buttons */}
         <div className="hero__cta-group animate-slide-up">
-          <a href="#get-started" className="btn btn--primary">
+          {/* 2. Replace the <a> with a <button> and use the onClick handler */}
+          <button 
+            onClick={onDownloadClick} 
+            className="btn btn--primary"
+          >
             Download the Prototype
-          </a>
+          </button>
+          
           <a href="#solutions" className="hero__secondary-link">
             {'>'} See the workflow
           </a>

@@ -2,86 +2,118 @@
 
 /* Base styles for the navbar container */
 .navbar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 1000; /* Ensures it stays on top of other content */
-    padding: 1rem 0;
-    
-    /* Smooth transition for background color and backdrop filter */
-    transition: background-color 0.3s ease-out, backdrop-filter 0.3s ease-out, border-bottom 0.3s ease-out;
-  }
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000; /* Ensures it stays on top of other content */
+  padding: 1rem 0;
   
-  /* Styles for the navbar when the page is scrolled */
-  .navbar.scrolled {
-    /* This creates a "glassmorphism" effect that works perfectly with the dark theme */
-    background-color: rgba(10, 10, 10, 0.8); 
-    backdrop-filter: blur(10px); /* This creates the blur effect */
-    -webkit-backdrop-filter: blur(10px); /* For Safari compatibility */
-    border-bottom: 1px solid var(--color-border); /* Uses the theme's border color */
-  }
+  /* Smooth transition for background color and backdrop filter */
+  transition: background-color 0.3s ease-out, backdrop-filter 0.3s ease-out, border-bottom 0.3s ease-out;
+}
+
+/* Styles for the navbar when the page is scrolled */
+.navbar.scrolled {
+  /* This creates a "glassmorphism" effect that works perfectly with the dark theme */
+  background-color: rgba(10, 10, 10, 0.8); 
+  backdrop-filter: blur(10px); /* This creates the blur effect */
+  -webkit-backdrop-filter: blur(10px); /* For Safari compatibility */
+  border-bottom: 1px solid var(--color-border); /* Uses the theme's border color */
+}
+
+/* Inner container to align content */
+.navbar__container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   
-  /* Inner container to align content */
-  .navbar__container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    
-    /* Re-uses the global container styles for consistent width */
-    width: 100%;
-    max-width: 72rem;
-    margin: 0 auto;
-    padding: 0 1.5rem;
-  }
+  /* Re-uses the global container styles for consistent width */
+  width: 100%;
+  max-width: 72rem;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* Logo styling */
+.navbar__logo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  text-decoration: none;
+}
+
+/* Container for the navigation links */
+.navbar__links {
+  display: flex;
+  gap: 2.5rem; /* Space between links */
+}
+
+.navbar__links a {
+  color: var(--color-text-secondary);
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.2s ease-out;
+}
+
+.navbar__links a:hover {
+  color: var(--color-text-primary);
+}
+
+/* Container for the authentication buttons */
+.navbar__auth {
+  display: flex;
+  align-items: center;
+  gap: 1rem; /* Space between login and sign up */
+}
+
+/* --- Add to your Navbar.css --- */
+
+/* Container for the authenticated user's profile info */
+.navbar__profile {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Style for the profile name/welcome message */
+.navbar__profile-name {
+  color: var(--color-text-primary); /* Use primary text color */
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  /* Optional: Add a subtle border or background to make it stand out */
+  /* border: 1px solid var(--color-border); */ 
+  /* border-radius: var(--border-radius-sm); */
+}
+
+/*
+--- REFINEMENT: Updated Login button styling ---
+The Login element is now a <button> in React, so we ensure the styles are reset 
+to look like a link, and add a hover effect.
+*/
+.navbar__auth-login {
+  /* Reset button styles */
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  text-align: left;
   
-  /* Logo styling */
-  .navbar__logo {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--color-text-primary);
-    text-decoration: none;
-  }
-  
-  /* Container for the navigation links */
-  .navbar__links {
-    display: flex;
-    gap: 2.5rem; /* Space between links */
-  }
-  
-  .navbar__links a {
-    color: var(--color-text-secondary);
-    font-weight: 500;
-    text-decoration: none;
-    transition: color 0.2s ease-out;
-  }
-  
-  .navbar__links a:hover {
-    color: var(--color-text-primary);
-  }
-  
-  /* Container for the authentication buttons */
-  .navbar__auth {
-    display: flex;
-    align-items: center;
-    gap: 1rem; /* Space between login and sign up */
-  }
-  
-  .navbar__auth-login {
-    color: var(--color-text-secondary);
-    font-weight: 500;
-    text-decoration: none;
-    padding: 0.5rem 1rem;
-    transition: color 0.2s ease-out;
-  }
-  
-  /* .navbar__auth-login:hover {
-    
-  } */
-  
-  /* The Sign Up button should use the global .btn and .btn--primary classes in your HTML. */
-  /* This class just provides minor adjustments for the navbar context. */
-  .navbar__auth-signup {
-    padding: 0.5rem 1.25rem;
-    font-size: 0.9rem;
-  }
+  /* Inherited link styles */
+  color: var(--color-text-secondary);
+  font-weight: 500;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  transition: color 0.2s ease-out;
+}
+
+.navbar__auth-login:hover {
+  color: var(--color-text-primary); /* Add the hover effect back */
+}
+
+/* The Sign Up button should use the global .btn and .btn--primary classes in your HTML. */
+/* This class just provides minor adjustments for the navbar context. */
+.navbar__auth-signup {
+  padding: 0.5rem 1.25rem;
+  font-size: 0.9rem;
+}

@@ -1,0 +1,113 @@
+/* --- Login.css (Monochrome Theme Compliant) --- */
+
+/* The main container for centering the form */
+.login-container {
+    display: flex;
+    justify-content: center;
+    /* CHANGE: Use min-height to ensure it takes up enough space when viewed alone */
+    min-height: calc(100vh - 5rem); /* Adjust based on your Navbar height (approx 5rem) */
+    align-items: center;
+    padding: 4rem 2rem; /* Increased top padding for better vertical spacing */
+}
+
+/* The form card/panel */
+.login-form {
+    width: 100%;
+    max-width: 400px;
+    padding: 2rem;
+    /* CHANGE: Use theme variables for background and border */
+    background-color: rgba(10, 10, 10, 0.7); /* Lighter black with transparency */
+    border: 1px solid var(--color-border); /* Subtle border from App.css */
+    border-radius: var(--border-radius-lg);
+    backdrop-filter: blur(8px); /* Slight reduction of blur for a sharper look */
+}
+
+/* Form title */
+.login-form h2 {
+    /* CHANGE: Use theme variable for text color */
+    color: var(--color-text-primary);
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-size: 1.75rem;
+}
+
+.input-group {
+    margin-bottom: 1rem;
+}
+
+/* Input label */
+.input-group label {
+    display: block;
+    /* CHANGE: Use theme variable for label color */
+    color: var(--color-text-secondary);
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+/* Text input fields */
+.input-group input {
+    width: 100%;
+    padding: 0.75rem;
+    /* CHANGE: Use theme variable for input background */
+    background-color: var(--color-surface); /* Darker surface for contrast */
+    border: 1px solid var(--color-border); /* Subtle border from App.css */
+    border-radius: var(--border-radius-sm);
+    /* CHANGE: Use theme variable for input text color */
+    color: var(--color-text-primary);
+    font-size: 1rem;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Focus state for input fields */
+.input-group input:focus {
+    outline: none;
+    /* CHANGE: Use primary text color for focus ring/border (or introduce an accent variable) */
+    border-color: var(--color-text-primary); 
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.3); /* Subtle white glow */
+}
+
+/* Error message styling */
+.error-message {
+    /* CHANGE: Use red/error colors suitable for dark mode */
+    color: #ff8a80; /* A soft red for text */
+    background-color: rgba(255, 99, 71, 0.1); /* Transparent red background */
+    border: 1px solid #ff8a80; /* Soft red border */
+    padding: 0.75rem;
+    border-radius: var(--border-radius-sm);
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+/* Login Action Button */
+.login-button {
+    /* To ensure it matches the style of the global .btn--primary class, 
+       we'll apply the global class styles and only add custom adjustments here. 
+       However, since this is a new component, we define the look based on the theme.
+    */
+    width: 100%;
+    padding: 0.75rem;
+    border: none;
+    border-radius: var(--border-radius-sm);
+    /* CHANGE: Use theme action variables for button look */
+    background-color: var(--color-action-bg);
+    color: var(--color-action-text);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.login-button:hover {
+    /* CHANGE: Use theme action hover variable */
+    background-color: var(--color-action-bg-hover);
+    transform: translateY(-1px);
+}
+
+.login-button:disabled {
+    /* CHANGE: Use theme tertiary/disabled color */
+    background-color: var(--color-text-tertiary); 
+    color: var(--color-text-secondary);
+    cursor: not-allowed;
+    transform: none;
+}
