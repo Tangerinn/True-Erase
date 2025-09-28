@@ -117,3 +117,61 @@ to look like a link, and add a hover effect.
   padding: 0.5rem 1.25rem;
   font-size: 0.9rem;
 }
+
+/* Target the buttons used as links in the navbar */
+.navbar__links button.nav-link {
+  /* 1. Remove the default browser appearance */
+  background: none; /* Remove white background */
+  background-color: transparent; /* Ensure transparency */
+  border: none; /* Remove the border/box */
+  
+  /* 2. Style them to look like the surrounding links */
+  padding: 0; /* Remove default button padding */
+  margin: 0 1rem; /* Use the same spacing as the other links */
+  cursor: pointer; /* Keep the pointer cursor */
+  
+  /* 3. Inherit text color and font from the navbar */
+  color: inherit; /* Use the main navbar text color (usually white/light) */
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit; /* If you want bold, set font-weight: 700 */
+  text-decoration: none; /* Ensure no underline on click/hover if you use :hover */
+}
+
+/* Optional: If the button is not inheriting the text color, add this */
+.navbar__links button:hover {
+  color: var(--color-primary-light); /* Example hover color */
+}
+
+/* 1. Ensure the containing div uses Flexbox for vertical alignment */
+.navbar__links {
+  display: flex;
+  align-items: center; /* This is the key line for vertical centering */
+  gap: 1.5rem; /* Use 'gap' for consistent spacing between links */
+  /* Remove padding/margin here if you were trying to use it for spacing */
+}
+
+/* 2. Apply a uniform base style to ALL elements within the links container */
+.navbar__links a,
+.navbar__links button {
+  /* Reset default element spacing */
+  margin: 0;
+  padding: 0.5rem 0.75rem; /* Apply uniform vertical padding to center text */
+  
+  /* Ensure all text uses the same properties */
+  font-size: 1rem; /* Use a consistent font size */
+  text-decoration: none;
+  line-height: 1; /* Ensure text takes up minimal vertical space */
+
+  /* Ensure buttons act like links */
+  border: none;
+  background: transparent;
+  color: inherit; /* Inherit the text color from the parent container */
+  cursor: pointer;
+}
+
+/* 3. Enhance hover feedback */
+.navbar__links a:hover,
+.navbar__links button:hover {
+  color: var(--color-primary-light); /* Or whatever your highlight color is */
+}

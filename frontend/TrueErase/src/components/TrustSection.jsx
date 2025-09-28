@@ -1,15 +1,25 @@
 import React from 'react';
 import '../style/TrustSection.css'; // The styles for this component
 
+// 1. IMPORT THE IMAGES
+// IMPORTANT: Update these paths to the correct location of your downloaded PNG files
+import nistLogo from '../assets/logos/1.png'; 
+import pythonLogo from '../assets/logos/2.png'; 
+import rustLogo from '../assets/logos/3.png';
+import linuxLogo from '../assets/logos/4.png';
+import jwsLogo from '../assets/logos/5.png'; 
+import padesLogo from '../assets/logos/6.png'; 
+
+
 const TrustSection = () => {
-  // Array of logos to be displayed
+  // 2. UPDATE THE logos ARRAY to include the imported image and alt text
   const logos = [
-    { name: 'NIST' },
-    { name: 'Python' },
-    { name: 'Rust' },
-    { name: 'Linux' },
-    { name: 'JWS' },
-    { name: 'PAdES' },
+    { name: 'NIST', image: nistLogo, alt: 'NIST SP 800-88 Standard' },
+    { name: 'Python', image: pythonLogo, alt: 'Python Programming Language' },
+    { name: 'Rust', image: rustLogo, alt: 'Rust Programming Language' },
+    { name: 'Linux', image: linuxLogo, alt: 'Linux Operating System' },
+    { name: 'JWS', image: jwsLogo, alt: 'JSON Web Signature' },
+    { name: 'PAdES', image: padesLogo, alt: 'PDF Advanced Electronic Signatures' },
   ];
 
   // We duplicate the logos to create the seamless infinite scroll effect
@@ -23,31 +33,26 @@ const TrustSection = () => {
         </h2>
 
         <div className="trust-carousel animate-fade-in">
-          {/* Decorative Arrow on the left */}
-          {/* <button className="trust-carousel__arrow">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M15 18L9 12L15 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-          </button> */}
+          {/* Decorative Arrow on the left (kept commented out as you intended) */}
 
           {/* The main scroller element */}
           <div className="trust-scroller">
             <div className="trust-scroller__track">
-              {/* Render the duplicated logos */}
+              {/* 3. RENDER THE IMAGES instead of the text name */}
               {duplicatedLogos.map((logo, index) => (
                 <div key={index} className="trust-scroller__logo">
-                  <span>{logo.name}</span>
+                  <img 
+                    src={logo.image} 
+                    alt={logo.alt} 
+                    className="logo-image"
+                  />
+                  {/* You can optionally add a <p>{logo.name}</p> below the image if you want the text label too */}
                 </div>
               ))}
             </div>
           </div>
           
-          {/* Decorative Arrow on the right (CORRECTED SVG PATH) */}
-          {/* <button className="trust-carousel__arrow">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M9 18L15 12L9 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-          </button> */}
+          {/* Decorative Arrow on the right (kept commented out as you intended) */}
         </div>
       </div>
     </section>

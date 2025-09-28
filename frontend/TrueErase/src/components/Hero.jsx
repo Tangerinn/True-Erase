@@ -8,13 +8,14 @@ const Hero = ({ onDownloadClick }) => {
       <div className="container hero__container">
         {/* Main Headline */}
         <h1 className="hero__title animate-slide-up">
-          A New Standard for Data Sanitization.
+        Wipe with Absolute Trust.
+        Recycle with Intent.
         </h1>
         
         {/* Sub-headline */}
         <p className="hero__subtitle animate-slide-up">
-          TrueErase is a verifiable, NIST-compliant platform that provides 
-          cryptographic proof of data destruction, enabling a fully trusted 
+          TrueErase is a verifiable, <b>NIST-compliant</b> platform that provides 
+          <b>cryptographic proof</b> of data destruction, enabling a fully trusted 
           circular economy.
         </p>
 
@@ -29,7 +30,7 @@ const Hero = ({ onDownloadClick }) => {
           </button>
           
           <a href="#solutions" className="hero__secondary-link">
-            {'>'} See the workflow
+            {'>'} Learn more
           </a>
         </div>
       </div>

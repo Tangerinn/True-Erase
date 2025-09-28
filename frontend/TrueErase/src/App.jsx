@@ -42,9 +42,11 @@ function App() {
   const HomeContent = (
     <>
         <Hero  onDownloadClick={() => handleViewChange(VIEWS.LOGIN)}/>
-      <TrustSection/>
-      <FeatureTabs/>
+        <FeatureTabs/>
       <Solutions/>
+      <TrustSection/>
+     
+   
       <Footer/>
     </>
   );
