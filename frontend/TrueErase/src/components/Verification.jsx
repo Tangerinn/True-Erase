@@ -11,7 +11,7 @@ const Verification = () => {
     e.stopPropagation();
     setIsDragging(true);
   };
-
+                    
   const handleDragLeave = (e) => {
     e.preventDefault();
     e.stopPropagation();

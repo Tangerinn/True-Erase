@@ -13,7 +13,7 @@ const GetStarted = () => {
           for Linux-based systems and demonstrates our core sanitization and certification workflow.
         </p>
         <a 
-          href="/path/to/your/TrueErase.iso" // IMPORTANT: Replace with the actual file path
+          href="https://drive.google.com/drive/folders/1U1E9BeIkLEq74Xijn03hu3dzYvv-ZFwA" // IMPORTANT: Replace with the actual file path
           download 
           className="btn btn--primary get-started__button animate-fade-in"
         >
