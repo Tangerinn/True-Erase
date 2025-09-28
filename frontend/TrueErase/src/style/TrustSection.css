@@ -1,0 +1,107 @@
+/* --- TrustSection.css (FIXED ARROWS) --- */
+
+/* Keyframe animation for the horizontal scroll */
+@keyframes scroll-left {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+  
+  /* Base styles for the section */
+  .trust-section {
+    padding: 6rem 0;
+    text-align: center;
+    overflow-x: hidden; /* Prevents horizontal scrollbar on small screens */
+  }
+  
+  .trust-section__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .trust-section__title {
+    font-size: 2rem;
+    max-width: 35rem;
+    margin-bottom: 4rem;
+    text-wrap: balance;
+  }
+  
+  /* Main container for the scroller and arrows */
+  .trust-carousel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
+  
+  /* The "viewport" for the scrolling animation */
+  .trust-scroller {
+    flex-grow: 1; /* Allows scroller to take up available space */
+    max-width: 960px;
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(to right, transparent, black 20%, black 80%, transparent);
+    mask-image: linear-gradient(to right, transparent, black 20%, black 80%, transparent);
+  }
+  
+  /* The track that contains all the logos and moves left */
+  .trust-scroller__track {
+    display: flex;
+    width: fit-content;
+    animation: scroll-left 40s linear infinite;
+  }
+  
+  /* On hover, the animation is paused for better UX */
+  .trust-scroller:hover .trust-scroller__track {
+    animation-play-state: paused;
+  }
+  
+  /* Styling for each individual logo */
+  .trust-scroller__logo {
+    flex-shrink: 0;
+    width: 180px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 1rem;
+    border: 1px solid var(--color-border);
+    background-color: var(--color-surface);
+    border-radius: var(--border-radius-md);
+    color: var(--color-text-secondary);
+    font-weight: 500;
+  }
+  
+  /* --- THE FIX IS HERE --- */
+  
+  /* Styling for the arrow buttons */
+  .trust-carousel__arrow {
+    /* This prevents the buttons from shrinking on smaller screens */
+    flex-shrink: 0;
+    
+    /* Makes them look like distinct buttons */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%; /* Circular shape */
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    color: var(--color-text-secondary);
+    cursor: pointer;
+    margin: 0 1rem;
+    
+    /* Smooth transition for hover effects */
+    transition: all 0.2s ease-out;
+  }
+  
+  .trust-carousel__arrow:hover {
+    background-color: var(--color-surface-hover);
+    border-color: var(--color-border-hover);
+    color: var(--color-text-primary);
+    transform: scale(1.05); /* Slight zoom effect on hover */
+  }

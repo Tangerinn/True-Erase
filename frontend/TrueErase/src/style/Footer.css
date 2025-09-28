@@ -1,0 +1,95 @@
+/* --- Footer.css --- */
+
+.footer {
+    padding: 5rem 0;
+    background-color: var(--color-background);
+    border-top: 1px solid var(--color-border);
+    color: var(--color-text-secondary);
+    font-size: 0.9rem;
+  }
+  
+  .footer__container {
+    display: grid;
+    /* Creates four equal-width columns on desktop */
+    grid-template-columns: repeat(4, 1fr);
+    gap: 3rem 2rem; /* Row and column gap */
+  }
+  
+  /* --- Column Styling --- */
+  
+  /* First column with brand info */
+  .footer__brand {
+    /* On larger screens, you might want the brand column to be wider. 
+       For a 4-column layout, this isn't necessary, but is an option. */
+  }
+  
+  .footer__logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-text-primary);
+    margin-bottom: 1rem;
+  }
+  
+  .footer__tagline {
+    margin-bottom: 1rem;
+    line-height: 1.6;
+  }
+  
+  .footer__copyright {
+    color: var(--color-text-tertiary);
+    font-size: 0.8rem;
+  }
+  
+  /* General styling for the link list columns */
+  .footer__column-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin-bottom: 1.5rem;
+  }
+  
+  .footer__links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  
+  .footer__links a {
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    transition: color 0.2s ease-out;
+  }
+  
+  .footer__links a:hover {
+    color: var(--color-text-primary);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+  
+  /* --- Responsive Adjustments --- */
+  
+  @media (max-width: 768px) {
+    .footer__container {
+      /* Switch to a two-column layout on tablets */
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .footer__container {
+      /* Stack all columns vertically on mobile */
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+    
+    .footer {
+      text-align: center;
+    }
+    
+    .footer__links {
+      align-items: center;
+    }
+  }

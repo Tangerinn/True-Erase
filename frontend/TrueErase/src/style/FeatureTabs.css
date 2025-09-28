@@ -1,0 +1,161 @@
+/* --- FeaturesTabs.css --- */
+
+.features-tabs {
+  padding: 8rem 0; /* More vertical padding for distinct section */
+  background-color: var(--color-background);
+}
+
+.features-tabs__title {
+  text-align: center;
+  font-size: 2.5rem;
+  max-width: 45rem;
+  margin: 0 auto 5rem; /* Center and add space below title */
+  text-wrap: balance;
+}
+
+.features-tabs__content-wrapper {
+  display: flex;
+  gap: 4rem; /* Space between the navigation and the content body */
+  max-width: 78rem; /* Slightly wider than .container for this layout */
+  margin: 0 auto;
+}
+
+/* --- Tabs Navigation (Left Column) --- */
+.features-tabs__nav {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0; /* Prevents navigation from shrinking */
+  width: 280px; /* Fixed width for the navigation column */
+  padding-right: 2rem;
+  border-right: 1px solid var(--color-border); /* Separator line */
+}
+
+.features-tabs__nav-item {
+  background: none;
+  border: none;
+  padding: 1.25rem 0;
+  text-align: left;
+  font-family: var(--font-sans);
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  transition: all 0.2s ease-out;
+  border-bottom: 1px solid transparent; /* For active indicator */
+}
+
+.features-tabs__nav-item:first-child {
+  border-top: 1px solid transparent; /* For consistency */
+}
+
+/* Hover state for navigation items */
+.features-tabs__nav-item:hover {
+  color: var(--color-text-primary);
+}
+
+/* Active state for navigation item */
+.features-tabs__nav-item.active {
+  color: var(--color-text-primary);
+  font-weight: 600;
+  border-right: 3px solid var(--color-action-bg); /* Active indicator bar */
+  transform: translateX(4px); /* Slight nudge */
+}
+
+/* --- Tab Content and Graphic (Right Column) --- */
+.features-tabs__body {
+  flex-grow: 1; /* Allows the body to take up remaining space */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Pushes graphic to bottom, text to top */
+  padding-top: 1rem; /* Align with nav items */
+}
+
+.features-tabs__text h3 {
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  animation: slideUp 0.5s ease-out forwards; /* Reuse global animation */
+}
+
+.features-tabs__text p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: var(--color-text-secondary);
+  animation: slideUp 0.5s ease-out forwards; /* Reuse global animation */
+  animation-delay: 0.1s; /* Stagger text animation */
+  opacity: 0; /* Start hidden */
+}
+
+.features-tabs__graphic {
+  display: flex;
+  justify-content: flex-end; /* Align graphic to the right/bottom */
+  align-items: flex-end;
+  height: 150px; /* Give it some vertical space */
+  color: var(--color-text-tertiary); /* Color the SVG */
+  opacity: 0.3; /* Subtle, background-like graphic */
+  transition: color 0.3s ease-out, opacity 0.3s ease-out; /* Smooth transition */
+  animation: fadeIn 0.6s ease-out forwards; /* Reuse global animation */
+}
+
+.features-tabs__graphic svg {
+  width: 120px; /* Larger SVG icon */
+  height: 120px;
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 1024px) {
+  .features-tabs__content-wrapper {
+    flex-direction: column; /* Stack columns on smaller screens */
+    gap: 3rem;
+  }
+
+  .features-tabs__nav {
+    width: 100%; /* Full width for nav */
+    flex-direction: row; /* Make nav items horizontal */
+    overflow-x: auto; /* Allow horizontal scrolling if many tabs */
+    border-right: none;
+    padding-right: 0;
+    border-bottom: 1px solid var(--color-border);
+    margin-bottom: 2rem;
+    -webkit-overflow-scrolling: touch; /* Smoother scrolling on iOS */
+  }
+
+  .features-tabs__nav-item {
+    flex-shrink: 0; /* Prevent items from shrinking */
+    padding: 0.8rem 1.5rem;
+    border-bottom: none;
+    border-right: 1px solid transparent;
+  }
+
+  .features-tabs__nav-item.active {
+    border-bottom: 3px solid var(--color-action-bg);
+    border-right: none;
+    transform: translateY(0); /* Remove horizontal nudge */
+  }
+
+  .features-tabs__graphic {
+    justify-content: center; /* Center graphic on mobile */
+    align-items: center;
+    height: 100px;
+    margin-top: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .features-tabs__title {
+    font-size: 2rem;
+    margin-bottom: 3rem;
+  }
+
+  .features-tabs__nav-item {
+    font-size: 1.1rem;
+    padding: 0.7rem 1.2rem;
+  }
+
+  .features-tabs__text h3 {
+    font-size: 1.6rem;
+  }
+
+  .features-tabs__text p {
+    font-size: 0.95rem;
+  }
+}

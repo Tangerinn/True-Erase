@@ -1,0 +1,88 @@
+/* --- Hero.css --- */
+
+/* Main hero section container */
+.hero {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 80vh; /* Makes the hero section take up the full screen height */
+    padding-top: 80px; /* Adds padding to account for the fixed navbar's height */
+    position: relative; /* Needed to position pseudo-elements if you add them later */
+    overflow: hidden; /* Prevents any decorative elements from spilling out */
+    box-shadow: var(--action-glow);
+  }
+  
+  /* Inner container for aligning content */
+  .hero__container {
+    text-align: center;
+    position: relative;
+    z-index: 2; /* Ensures content is above any background animations */
+  }
+  
+  /* Main Headline (H1) */
+  .hero__title {
+    /* Overrides the global h1 style for more impact in the hero section */
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    line-height: 1.1;
+    text-wrap: balance;
+  }
+  
+  /* Sub-headline (P tag) */
+  .hero__subtitle {
+    /* Larger than a standard paragraph for emphasis */
+    font-size: 1.125rem;
+    line-height: 1.6;
+    color: var(--color-text-secondary);
+    max-width: 42rem; /* Limits the line length for better readability */
+    margin: 0 auto 2.5rem; /* Centers the element horizontally */
+    
+    /* Staggered animation */
+    animation-delay: 0.2s;
+    opacity: 0; /* Start hidden for animation */
+  }
+  
+  /* Container for the buttons */
+  .hero__cta-group {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem; /* Space between the two buttons */
+    
+    /* Staggered animation */
+    animation-delay: 0.4s;
+    opacity: 0; /* Start hidden for animation */
+  }
+  
+  /* Secondary link specific styles */
+  .hero__secondary-link {
+    color: var(--color-text-secondary);
+    font-weight: 500;
+    transition: all 0.2s ease-out;
+  }
+  
+  .hero__secondary-link:hover {
+    color: var(--color-text-primary);
+    transform: translateX(4px); /* Moves the link slightly to the right on hover */
+  }
+  
+  /* Responsive adjustments for smaller screens */
+  @media (max-width: 768px) {
+    .hero {
+      min-height: 90vh;
+    }
+    
+    .hero__title {
+      font-size: 2.5rem;
+    }
+  
+    .hero__subtitle {
+      font-size: 1rem;
+    }
+  
+    .hero__cta-group {
+      flex-direction: column; /* Stack the buttons on mobile */
+      gap: 1rem;
+    }
+  }
