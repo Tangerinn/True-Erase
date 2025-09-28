@@ -9,7 +9,7 @@
     padding-top: 80px; /* Adds padding to account for the fixed navbar's height */
     position: relative; /* Needed to position pseudo-elements if you add them later */
     overflow: hidden; /* Prevents any decorative elements from spilling out */
-    box-shadow: var(--action-glow);
+    /* box-shadow: var(--action-glow); */
   }
   
   /* Inner container for aligning content */

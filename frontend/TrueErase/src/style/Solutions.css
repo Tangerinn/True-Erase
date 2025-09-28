@@ -1,43 +1,23 @@
-/* --- Solutions.css --- */
+/* --- Solutions.css (Corrected Layout) --- */
 
-.solutions {
+/* * 1. MAIN SECTION STYLING
+ * - Defines the overall container for the solutions section.
+ */
+ .solutions {
     padding: 8rem 0;
-    /* Use a slightly different background to visually separate the section */
     background-color: var(--color-surface); 
     border-top: 1px solid var(--color-border);
     border-bottom: 1px solid var(--color-border);
   }
   
+  /* * 2. TYPOGRAPHY
+   * - Styles for all text elements within the solutions section.
+   */
   .solutions__main-title {
     text-align: center;
     font-size: 2.5rem;
     margin-bottom: 5rem;
     text-wrap: balance;
-  }
-  
-  /* Container for the three cards */
-  .solutions__cards-container {
-    display: grid;
-    /* Creates three equal-width columns on larger screens */
-    grid-template-columns: repeat(3, 1fr); 
-    gap: 2rem; /* Space between the cards */
-  }
-  
-  /* Individual card styling */
-  .solutions__card {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between; /* Pushes button to the bottom */
-    background-color: var(--color-background); /* Darker background to pop against the section */
-    border: 1px solid var(--color-border);
-    border-radius: var(--border-radius-lg);
-    padding: 2.5rem;
-    transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
-  }
-  
-  .solutions__card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
   }
   
   .solutions__card-audience {
@@ -57,20 +37,51 @@
   .solutions__card-text {
     color: var(--color-text-secondary);
     line-height: 1.7;
-    margin-bottom: 2rem;
+    margin-bottom: 2rem; /* Provides space above the button */
   }
   
-  /* The button inside the card */
+  /* * 3. LAYOUT & CARD CONTAINER
+   * - This is the corrected grid layout.
+   */
+  .solutions__cards-container {
+    display: grid;
+    /* This creates three flexible, equal-width columns */
+    grid-template-columns: repeat(1rem, 1fr);
+    gap: 2rem; /* This is the space between the cards */
+  }
+  
+  /* * 4. INDIVIDUAL CARD STYLING
+   * - Defines the appearance, layout, and interaction for each card.
+   */
+  .solutions__card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; 
+    background-color: var(--color-background);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-lg);
+    padding: 2.5rem;
+    /* We remove the fixed 'width' so the grid can manage the size */
+    transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+  }
+  
+  .solutions__card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* The button is aligned to the start of the card's flex container */
   .solutions__card .btn {
-    align-self: flex-start; /* Aligns the button to the left */
+    align-self: flex-start;
   }
   
-  /* Responsive adjustments for tablet and mobile */
+  /* * 5. RESPONSIVE DESIGN (MEDIA QUERIES)
+   * - Adjusts the layout for tablet and mobile devices.
+   */
   @media (max-width: 1024px) {
     .solutions__cards-container {
-      /* Stack the cards in a single column on smaller screens */
-      grid-template-columns: 1fr; 
-      gap: 2rem;
+      /* On smaller screens, switch to a single column layout */
+      grid-template-columns: 1fr;
     }
   }
   

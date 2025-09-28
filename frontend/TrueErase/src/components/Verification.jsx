@@ -1,133 +1,130 @@
-import React, { useState } from 'react';
-import '../style/Verification.css'; // Adjust path based on your file structure
+import React, { useState, useCallback } from 'react';
+import '../style/Verification.css'; // Import the new CSS file
 
+// --- Helper Components ---
+
+const SuccessView = ({ onReset, data }) => (
+    <div className="result-view result-view--success">
+        <svg className="result-view__icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+        <h3 className="result-view__title">Certificate is Authentic</h3>
+        <p className="result-view__subtitle result-view__subtitle--success">The certificate has been successfully verified.</p>
+        <div className="result-view__details">
+            <p><strong className="result-view__detail-label">Device ID:</strong> {data?.deviceDetails?.deviceId || 'N/A'}</p>
+            <p><strong className="result-view__detail-label">Wipe Method:</strong> {data?.wipeDetails?.wipeMethod || 'N/A'}</p>
+            <p><strong className="result-view__detail-label">Timestamp:</strong> {data?.issueTimestamp || 'N/A'}</p>
+        </div>
+        <button onClick={onReset} className="result-view__button result-view__button--success">Verify Another</button>
+    </div>
+);
+
+const FailureView = ({ onReset, data }) => (
+    <div className="result-view result-view--failure">
+        <svg className="result-view__icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+        <h3 className="result-view__title">Verification Failed</h3>
+        <div className="result-view__details result-view__details--failure">
+            <div>
+                <strong className="result-view__reason-title">Reason for Failure:</strong>
+                <p className="result-view__reason-text">The verification code is missing or does not match the expected value. The certificate is considered invalid.</p>
+            </div>
+            {data && (
+                <div>
+                    <strong className="result-view__unverified-title">Unverified Data from File:</strong>
+                    <p className="result-view__unverified-text">Device ID: {data?.deviceDetails?.deviceId || 'N/A'}</p>
+                </div>
+            )}
+        </div>
+        <div className="result-view__action-box">
+            <strong className="result-view__action-title">⚠️ Action Required:</strong>
+            <p className="result-view__action-text">Do not proceed with recycling this asset. Please contact the original owner or your administrator to resolve this discrepancy.</p>
+        </div>
+        <button onClick={onReset} className="result-view__button result-view__button--failure">Try Again</button>
+    </div>
+);
+
+const VerifyingView = () => (
+    <div className="verifying-view">
+        <div className="verifying-view__spinner"></div>
+        <p className="verifying-view__title">Verifying...</p>
+        <p className="verifying-view__subtitle">Reading file and checking for verification key.</p>
+    </div>
+);
+
+
+// --- Main Verification Component ---
 const Verification = () => {
-  const [status, setStatus] = useState('idle'); // 'idle', 'success', 'failure'
-  const [isDragging, setIsDragging] = useState(false);
-  const [fileDetails, setFileDetails] = useState({});
+    const [state, setState] = useState('idle');
+    const [isDragging, setIsDragging] = useState(false);
+    const [verifiedData, setVerifiedData] = useState(null);
 
-  const handleDragEnter = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setIsDragging(true);
-  };
-                    
-  const handleDragLeave = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setIsDragging(false);
-  };
+    const handleFile = useCallback((file) => {
+        if (!file || !file.type.includes('json')) {
+            alert("Please upload a valid .json certificate file.");
+            return;
+        }
+        setState('verifying');
+        const reader = new FileReader();
+        reader.onload = (event) => {
+            setTimeout(() => {
+                try {
+                    const data = JSON.parse(event.target.result);
+                    setVerifiedData(data);
+                    if (data.verification_code === "SIH2025-TRUE-ERASE-VALID") {
+                        setState('success');
+                    } else {
+                        setState('failure');
+                    }
+                } catch (error) {
+                    setVerifiedData(null);
+                    setState('failure');
+                }
+            }, 2000);
+        };
+        reader.readAsText(file);
+    }, []);
 
-  const handleDragOver = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-  };
+    const resetState = () => {
+        setState('idle');
+        setVerifiedData(null);
+    };
 
-  const handleDrop = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setIsDragging(false);
+    const handleDragOver = (e) => { e.preventDefault(); setIsDragging(true); };
+    const handleDragLeave = (e) => { e.preventDefault(); setIsDragging(false); };
+    const handleDrop = (e) => { e.preventDefault(); setIsDragging(false); handleFile(e.dataTransfer.files[0]); };
+    const handleFileSelect = (e) => { handleFile(e.target.files[0]); };
 
-    const file = e.dataTransfer.files[0];
-    if (file) {
-      // --- FAKE VERIFICATION LOGIC ---
-      // In a real app, you would send the file to a backend for verification.
-      // Here, we'll simulate it based on the filename for demonstration.
-      if (file.name.toLowerCase().includes('valid')) {
-        setFileDetails({
-          deviceId: 'SN-A9B8C7D6E5F4',
-          wipeStatus: 'SUCCESS',
-          timestamp: new Date().toUTCString(),
-        });
-        setStatus('success');
-      } else {
-        setStatus('failure');
-      }
-    }
-  };
-  
-  const handleReset = () => {
-    setStatus('idle');
-    setFileDetails({});
-  };
+    const renderContent = () => {
+        switch (state) {
+            case 'success': return <SuccessView onReset={resetState} data={verifiedData} />;
+            case 'failure': return <FailureView onReset={resetState} data={verifiedData} />;
+            case 'verifying': return <VerifyingView />;
+            default:
+                const dropzoneClass = `uploader__dropzone ${isDragging ? 'uploader__dropzone--dragging' : ''}`;
+                return (
+                    <div className="uploader">
+                        <label onDragOver={handleDragOver} onDragLeave={handleDragLeave} onDrop={handleDrop} className={dropzoneClass}>
+                            <input type="file" onChange={handleFileSelect} className="uploader__input" accept=".json" />
+                            <svg className="uploader__icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" /></svg>
+                            <p className="uploader__title">Upload Certificate to Verify</p>
+                            <p className="uploader__subtitle">Drag & drop or click to upload a .json file.</p>
+                        </label>
+                    </div>
+                );
+        }
+    };
 
-  // Combine class names based on state
-  const dropzoneClasses = `verification__dropzone ${isDragging ? 'dragging' : ''} ${status}`;
-
-  return (
-    <section id="verification" className="verification">
-      <div className="container">
-        <h2 className="verification__title animate-fade-in">Trust, but Verify.</h2>
-        <p className="verification__subtitle animate-fade-in">
-          Drag and drop a TrueErase certificate here to instantly verify its 
-          cryptographic signature and authenticity.
-        </p>
-
-        {/* Links to download sample files for the user to test */}
-        <div className="verification__samples animate-fade-in">
-          <a href="/sample-valid-certificate.json" download>Download Sample Valid File</a>
-          <span>|</span>
-          <a href="/sample-invalid-certificate.json" download>Download Sample Invalid File</a>
-        </div>
-
-        <div
-          className={dropzoneClasses}
-          onDragEnter={handleDragEnter}
-          onDragLeave={handleDragLeave}
-          onDragOver={handleDragOver}
-          onDrop={handleDrop}
-        >
-          {status === 'idle' && (
-            <div className="verification__idle-content">
-              {/* Upload Icon */}
-              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                <polyline points="17 8 12 3 7 8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                <line x1="12" y1="3" x2="12" y2="15" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-              <span>Upload Certificate File</span>
+    return (
+        <section id="verify" className="verification">
+            <div className="verification__container">
+                <div className="verification__header">
+                    <h2 className="verification__title">Certificate Verification Portal</h2>
+                    <p className="verification__subtitle">Verify the authenticity of a True Erase certificate.</p>
+                </div>
+                <div className="verification__content">
+                    {renderContent()}
+                </div>
             </div>
-          )}
-
-          {status === 'success' && (
-            <div className="verification__result-content">
-              {/* Success Icon */}
-              <div className="verification__icon success-icon">
-                <svg width="64" height="64" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                  <polyline points="22 4 12 14.01 9 11.01" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-              </div>
-              <div className="verification__details">
-                <span>Device ID:</span><span>{fileDetails.deviceId}</span>
-                <span>Wipe Status:</span><span className="success-text">{fileDetails.wipeStatus}</span>
-                <span>Timestamp:</span><span>{fileDetails.timestamp}</span>
-              </div>
-              <p className="verification__status-text success-text">Signature Valid</p>
-            </div>
-          )}
-
-          {status === 'failure' && (
-            <div className="verification__result-content">
-              {/* Failure Icon */}
-              <div className="verification__icon failure-icon">
-                <svg width="64" height="64" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                  <line x1="15" y1="9" x2="9" y2="15" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                  <line x1="9" y1="9" x2="15" y2="15" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-              </div>
-              <p className="verification__status-text failure-text">Signature Invalid or Tampered</p>
-            </div>
-          )}
-        </div>
-        
-        {status !== 'idle' && (
-            <button onClick={handleReset} className="verification__reset-button">Verify Another File</button>
-        )}
-      </div>
-    </section>
-  );
+        </section>
+    );
 };
 
 export default Verification;
