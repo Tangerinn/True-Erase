@@ -1,77 +1,94 @@
-/*
- * 1. ADD THESE ACCENT COLORS TO YOUR :root BLOCK IN App.css
- * These variables add semantic colors for success/failure states
- * while the rest of the component uses your monochrome theme.
+/* --- Verification.css (FINAL CORRECTED CODE) --- */
+
+/* * NOTE: The :root variables below should reside in your main App.css file. 
+ * They are repeated here only for context on the colors used.
 */
+/*
 :root {
-  /* ... your existing variables ... */
-  --color-accent: #2dd4bf;         /* Teal for spinners, etc. */
+  --color-accent: #2dd4bf;         
+  --color-primary: #3b82f6; 
+  --color-surface: #222; 
+  --color-surface-hover: #1e1e1e; 
+  --color-border: #444; 
+  --color-text-primary: #fff;
+  --color-text-secondary: #aaa;
+  --border-radius-lg: 8px;
+  --border-radius-md: 6px;
+  --border-radius-sm: 4px;
+
   --color-success-bg: rgba(22, 101, 52, 0.5);
   --color-success-border: #22c55e;
   --color-success-text: #86efac;
   --color-success-icon: #4ade80;
+  
   --color-failure-bg: rgba(127, 29, 29, 0.5);
   --color-failure-border: #ef4444;
   --color-failure-text: #fca5a5;
   --color-failure-icon: #f87171;
 }
+*/
 
 
-/* --- Global Animations (No changes needed) --- */
+/* --- Global Animations --- */
 @keyframes spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
 
-/* --- Main Verification Section (Themed) --- */
+/* 1. Main Verification Section (The Centering Fix) */
 .verification {
-  padding-top: 5rem;
-  padding-bottom: 5rem;
+  /* 💥 FIX: Uses flex properties to center content horizontally and vertically */
+  min-height: 100vh; 
+  display: flex; 
+  flex-direction: column; 
+  justify-content: center; /* Centers vertically */
+  align-items: center; /* Centers horizontally (if content is smaller than viewport) */
+  
+  padding: 6rem 1.5rem 8rem; 
   background-color: var(--color-background);
+  text-align: center;
 }
 
 .verification__container {
-  max-width: 80rem;
+  /* Constrains the content block */
+  max-width: 600px; 
   width: 100%;
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
+  margin: 0 auto;
 }
 
 .verification__header {
-  text-align: center;
   margin-bottom: 3rem;
 }
 
 .verification__title {
-  font-size: 2.25rem;
+  font-size: 2.5rem; 
   font-weight: 700;
   color: var(--color-text-primary);
 }
 
-.verification__content {
-  max-width: 42rem;
-  margin-left: auto;
-  margin-right: auto;
+.verification__subtitle {
+  color: var(--color-text-secondary);
+  font-size: 1.1rem;
+  margin-top: 0.5rem;
 }
 
-/* --- Uploader (Themed) --- */
-.uploader {
-  text-align: center;
-}
-
+/* 2. Uploader (Dropzone Box) */
 .uploader__dropzone {
-  display: block;
-  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 2.5rem;
   background-color: var(--color-surface);
   border-radius: var(--border-radius-lg);
+  border: 2px dashed var(--color-border);
   cursor: pointer;
-  transition: background-color 0.2s;
+  transition: all 0.2s ease;
 }
 
 .uploader__dropzone:hover,
 .uploader__dropzone--dragging {
+  border-color: var(--color-primary); 
   background-color: var(--color-surface-hover);
 }
 
@@ -80,40 +97,44 @@
 }
 
 .uploader__icon {
-  width: 4rem;
-  height: 4rem;
-  margin: 0 auto;
-  color: var(--color-text-secondary);
+  width: 5rem; 
+  height: 5rem;
+  margin: 0 auto 1.5rem;
+  color: var(--color-primary); 
 }
 
 .uploader__title {
-  margin-top: 1rem;
-  font-size: 1.25rem;
+  font-size: 1.4rem;
+  font-weight: 600;
   color: var(--color-text-primary);
+  margin-top: 0;
 }
 
 .uploader__subtitle {
   color: var(--color-text-secondary);
+  margin-top: 0.5rem;
 }
 
-/* --- Verifying View (Uses Accent Color) --- */
+/* 3. Verifying View */
 .verifying-view {
   text-align: center;
-  padding: 2rem;
+  padding: 4rem 2rem; 
+  background-color: var(--color-surface);
+  border-radius: var(--border-radius-lg);
 }
 
 .verifying-view__spinner {
   width: 4rem;
   height: 4rem;
   margin: 0 auto;
-  border: 4px dashed var(--color-accent, #2dd4bf); /* Added fallback */
+  border: 4px dashed var(--color-accent); 
   border-radius: 9999px;
   animation: spin 1.5s linear infinite;
 }
 
 .verifying-view__title {
   color: var(--color-text-primary);
-  font-size: 1.25rem;
+  font-size: 1.5rem;
   margin-top: 1.5rem;
 }
 
@@ -121,21 +142,21 @@
   color: var(--color-text-secondary);
 }
 
-/* --- Shared Result View Styles (Themed) --- */
+/* 4. Shared Result View Styles */
 .result-view {
   text-align: center;
-  padding: 2rem;
-  border-radius: var(--border-radius-md);
+  padding: 3rem; 
+  border-radius: var(--border-radius-lg);
 }
 
 .result-view__icon {
-  width: 4rem;
-  height: 4rem;
+  width: 4.5rem; 
+  height: 4.5rem;
   margin: 0 auto;
 }
 
 .result-view__title {
-  font-size: 1.875rem;
+  font-size: 2rem; 
   font-weight: 700;
   color: var(--color-text-primary);
   margin-top: 1rem;
@@ -146,65 +167,81 @@
 }
 
 .result-view__details {
-  margin-top: 1.5rem;
+  margin-top: 2rem; 
   text-align: left;
-  background-color: var(--color-surface);
-  padding: 1rem;
-  border-radius: var(--border-radius-sm);
-  font-size: 0.875rem;
+  background-color: var(--color-surface-hover); 
+  padding: 1.25rem;
+  border-radius: var(--border-radius-md);
+  font-size: 1rem; 
 }
 
 .result-view__details > * + * {
-  margin-top: 0.5rem;
+  margin-top: 0.75rem; 
 }
 
 .result-view__detail-label {
   color: var(--color-text-secondary);
   font-weight: 700;
+  display: inline-block; 
+  min-width: 90px; 
 }
 
 .result-view__button {
-  margin-top: 2rem;
+  margin-top: 2.5rem; 
   color: var(--color-text-primary);
   font-weight: 600;
-  padding: 0.75rem 1.5rem;
+  padding: 0.75rem 2rem; 
   border: none;
   border-radius: var(--border-radius-md);
   transition: background-color 0.2s;
   cursor: pointer;
 }
 
-/* --- Success View Specifics (Green) --- */
+/* 5. Success View Specifics (Green) */
 .result-view--success {
-  background-color: var(--color-success-bg, rgba(22, 101, 52, 0.5));
-  border: 1px solid var(--color-success-border, #22c55e);
+  background-color: var(--color-success-bg);
+  border: 1px solid var(--color-success-border);
 }
-.result-view--success .result-view__icon { color: var(--color-success-icon, #4ade80); }
-.result-view__subtitle--success { color: var(--color-success-text, #86efac); }
-.result-view__button--success { background-color: #0d9488; } /* Original Teal */
+.result-view--success .result-view__icon { color: var(--color-success-icon); }
+.result-view__subtitle--success { color: var(--color-success-text); }
+.result-view__button--success { background-color: var(--color-accent); } 
 .result-view__button--success:hover { background-color: #14b8a6; }
 
-/* --- Failure View Specifics (Red) --- */
+/* 6. Failure View Specifics (Red) */
 .result-view--failure {
-  background-color: var(--color-failure-bg, rgba(127, 29, 29, 0.5));
-  border: 1px solid var(--color-failure-border, #ef4444);
+  background-color: var(--color-failure-bg);
+  border: 1px solid var(--color-failure-border);
 }
-.result-view--failure .result-view__icon { color: var(--color-failure-icon, #f87171); }
+.result-view--failure .result-view__icon { color: var(--color-failure-icon); }
+
+/* Failure Details and Action Box */
 .result-view__reason-title, .result-view__unverified-title {
-  color: var(--color-text-secondary);
+  color: var(--color-text-primary); 
   font-weight: 700;
   display: block;
 }
-.result-view__reason-text { color: var(--color-failure-text, #fca5a5); }
+.result-view__reason-text { color: var(--color-failure-text); }
 .result-view__unverified-text { color: var(--color-text-secondary); }
 
-/* Note: The yellow action box was removed for simplicity with the red theme */
-.result-view__action-box { display: none; }
+.result-view__action-box { 
+  background-color: var(--color-surface-hover); 
+  border: 1px solid var(--color-failure-border);
+  padding: 1rem;
+  border-radius: var(--border-radius-md);
+  margin-top: 1.5rem;
+  display: block; 
+}
 
-.result-view__button--failure { background-color: #475569; } /* Original Slate */
+.result-view__action-title {
+    color: var(--color-failure-icon);
+    margin-bottom: 0.5rem;
+}
+.result-view__action-text { color: var(--color-text-secondary); }
+
+.result-view__button--failure { background-color: #475569; }
 .result-view__button--failure:hover { background-color: #64748b; }
 
-/* --- Responsive Adjustments (No changes needed) --- */
+/* --- Responsive Adjustments --- */
 @media (min-width: 1024px) {
   .verification__title {
     font-size: 3rem;

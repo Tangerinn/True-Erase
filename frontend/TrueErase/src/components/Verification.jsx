@@ -117,7 +117,7 @@ const Verification = () => {
             <div className="verification__container">
                 <div className="verification__header">
                     <h2 className="verification__title">Certificate Verification Portal</h2>
-                    <p className="verification__subtitle">Verify the authenticity of a True Erase certificate.</p>
+                    {/* <p className="verification__subtitle">Verify the authenticity of a True Erase certificate.</p> */}
                 </div>
                 <div className="verification__content">
                     {renderContent()}
