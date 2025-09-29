@@ -1,3 +1,24 @@
+
+/**
+ * Handles the logic for file upload and the simple verification process.
+ * * --- Method Used (Simple Verification) ---
+ * This function performs a basic, non-cryptographic check on the uploaded
+ * JSON certificate. It reads the file, parses its content, and looks for a
+ * specific, hardcoded string within the "verification_code" field. If the
+ * string matches "SIH2025-TRUE-ERASE-VALID", the certificate is considered valid.
+ * * --- The Need for Cryptographic Verification ---
+ * This simple string-checking method is NOT SECURE and is only suitable for a
+ * proof-of-concept. 
+ * * The major security flaw is that anyone could create a completely fake JSON file,
+ * copy the valid "verification_code" string into it, and it would pass this 
+ * check. This method does not prove the authenticity of the certificate's data 
+ * (like the device serial number) and offers no protection against tampering.
+ * * A professional system must use cryptographic verification (e.g., checking a
+ * digital signature with a public key). This is the only way to guarantee that
+ * a certificate is both AUTHENTIC (genuinely issued by TrueErase) and has
+ * INTEGRITY (has not been altered since it was issued).
+ */
+
 import React, { useState, useCallback } from 'react';
 import '../style/Verification.css'; // Import the new CSS file
 
