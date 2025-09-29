@@ -30,9 +30,9 @@ const Footer = () => {
         <div className="footer__column">
           <h4 className="footer__column-title">Resources</h4>
           <ul className="footer__links">
-            <li><a href="#verification">Verification Portal</a></li>
+            {/* <li><a href="#verification">Verification Portal</a></li> */}
             <li><a href="#">Documentation</a></li>
-            <li><a href="#">Project GitHub</a></li>
+            <li><a href="https://github.com/Tangerinn/True-Erase.git">Project GitHub</a></li>
           </ul>
         </div>
 
@@ -41,7 +41,7 @@ const Footer = () => {
           <h4 className="footer__column-title">Company</h4>
           <ul className="footer__links">
             <li><a href="#">About Us</a></li>
-            <li><a href="#">Contact</a></li>
+            {/* <li><a href="#">Contact</a></li> */}
             <li><a href="#">SIH Project Submission</a></li>
           </ul>
         </div>
