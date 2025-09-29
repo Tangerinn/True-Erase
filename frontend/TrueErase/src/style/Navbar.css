@@ -175,3 +175,24 @@ to look like a link, and add a hover effect.
 .navbar__links button:hover {
   color: var(--color-primary-light); /* Or whatever your highlight color is */
 }
+
+/* Add this to your Navbar.css file */
+
+.navbar__logo {
+  /* Reset default button styles */
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  
+  /* Logo text styling */
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: white;
+  text-decoration: none;
+  transition: color 0.2s ease-out;
+}
+
+.navbar__logo:hover {
+  color: #a3a3a3; /* A subtle hover effect */
+}

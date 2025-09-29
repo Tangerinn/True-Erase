@@ -1,102 +1,119 @@
-import { useState } from 'react'
-import Navbar from './components/Navbar'
-import Hero from './components/Hero'
-import './style/App.css'
-import TrustSection from './components/TrustSection'
-import FeatureTabs from './components/FeatureTabs'
-import Solutions from './components/Solutions'
-import Verification from './components/Verification'
-import GetStarted from './components/GetStarted'
-import Footer from './components/Footer'
-import Login from './components/Login'
+import React, { useState, useEffect } from 'react';
+import { onAuthStateChanged, signOut } from 'firebase/auth';
+import { auth } from './firebase';
 
-// Define constants for your views and a new state for the authenticated view
+// Import all your components
+import Navbar from './components/Navbar';
+import Hero from './components/Hero';
+import FeatureTabs from './components/FeatureTabs';
+import Solutions from './components/Solutions';
+import TrustSection from './components/TrustSection';
+import Verification from './components/Verification';
+import GetStarted from './components/GetStarted';
+import Footer from './components/Footer';
+import Login from './components/Login';
+import Signup from './components/Signup';
+
+// Import your app's stylesheet
+import './style/App.css';
+
+// Define constants for all possible views
 const VIEWS = {
   HOME: 'home',
   LOGIN: 'login',
+  SIGNUP: 'signup',
   DASHBOARD: 'dashboard',
   VERIFICATION: 'verification' 
 };
 
 function App() {
-  // State to track the current view
   const [currentView, setCurrentView] = useState(VIEWS.HOME);
-  // State to track login status (Optional, but good practice)
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  // 1. Define a function to switch the view (used by Navbar)
+  // Checks the user's login state when the app loads
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setIsLoggedIn(true);
+        setCurrentView(VIEWS.DASHBOARD);
+      } else {
+        setIsLoggedIn(false);
+      }
+    });
+    return () => unsubscribe();
+  }, []);
+
+  // Handlers for changing views and state
   const handleViewChange = (viewName) => {
     setCurrentView(viewName);
   };
 
-  // 2. Define a function for successful login (passed to Login component)
   const handleLoginSuccess = () => {
     setIsLoggedIn(true);
-    setCurrentView(VIEWS.DASHBOARD); // Switch to the post-login view
+    setCurrentView(VIEWS.DASHBOARD);
   };
 
-  // ------------------------------------------------------------------
-  // 3. Define content for each state
-  // ------------------------------------------------------------------
+  const handleSignupSuccess = () => {
+    setIsLoggedIn(true);
+    setCurrentView(VIEWS.DASHBOARD);
+  };
 
-  // Content for the unauthenticated Home page
+  const handleLogout = () => {
+    signOut(auth).then(() => {
+      setIsLoggedIn(false);
+      setCurrentView(VIEWS.HOME);
+    });
+  };
+
+  // --- Content blocks ---
   const HomeContent = (
     <>
       <Hero onDownloadClick={() => handleViewChange(VIEWS.LOGIN)} />
       <FeatureTabs />
       <Solutions />
       <TrustSection />
-      {/* Keeping Verification here accessible on the homepage */}
-      <Verification />
       <Footer />
     </>
   );
 
-  // Content for the post-login Dashboard (Verification and GetStarted)
   const DashboardContent = (
     <>
       <GetStarted /> 
-
-      {/* <Verification /> */}
       <Footer />
     </>
   );
 
-  // ------------------------------------------------------------------
-  // 4. Conditional Rendering Logic
-  // ------------------------------------------------------------------
-
+  // --- Main rendering logic ---
   const renderContent = () => {
     switch (currentView) {
       case VIEWS.LOGIN:
-        // Pass the success handler to the Login component
         return <Login onLoginSuccess={handleLoginSuccess} />;
-
+      case VIEWS.SIGNUP:
+        return <Signup onSignupSuccess={handleSignupSuccess} />;
       case VIEWS.DASHBOARD:
-        // Show only the post-login components
         return DashboardContent;
-
       case VIEWS.VERIFICATION:
         return <Verification />; 
-
       case VIEWS.HOME:
       default:
-        // Show the standard homepage
         return HomeContent;
     }
   };
 
   return (
     <>
-      {/* 💥 FIX: onVerifyClick prop is now correctly passed to the Navbar */}
       <Navbar
+        onHomeClick={() => handleViewChange(VIEWS.HOME)}
         onLoginClick={() => handleViewChange(VIEWS.LOGIN)}
-        onVerifyClick={() => handleViewChange(VIEWS.VERIFICATION)} // <--- THIS LINE IS THE FIX
+        onVerifyClick={() => handleViewChange(VIEWS.VERIFICATION)}
+        onSignupClick={() => handleViewChange(VIEWS.SIGNUP)}
+        onLogout={handleLogout}
         isLoggedIn={isLoggedIn}
       />
       
-      {/* Conditionally render the main content */}
-      {renderContent()}
+      <main>
+        {renderContent()}
+      </main>
     </>
   );
 }
