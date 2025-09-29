@@ -177,3 +177,10 @@ a:hover {
 .animate-slide-up {
   animation: slideUp 0.6s ease-out forwards;
 }
+
+/* sets transparent text to white */
+.btn--secondary {
+  background-color: transparent;
+  border-color: var(--color-border);
+  color: var(--color-text-primary); 
+}

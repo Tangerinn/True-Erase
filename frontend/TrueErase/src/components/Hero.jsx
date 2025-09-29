@@ -15,7 +15,7 @@ const Hero = ({ onDownloadClick }) => {
         {/* Sub-headline */}
         <p className="hero__subtitle animate-slide-up">
           TrueErase is a verifiable, <b>NIST-compliant</b> platform that provides 
-          <b>cryptographic proof</b> of data destruction, enabling a fully trusted 
+          <b> cryptographic proof</b> of data destruction, enabling a fully trusted 
           circular economy.
         </p>
 

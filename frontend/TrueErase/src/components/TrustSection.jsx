@@ -5,7 +5,7 @@ import '../style/TrustSection.css'; // The styles for this component
 // IMPORTANT: Update these paths to the correct location of your downloaded PNG files
 import nistLogo from '../assets/logos/1.png'; 
 import pythonLogo from '../assets/logos/2.png'; 
-import rustLogo from '../assets/logos/3.png';
+// import rustLogo from '../assets/logos/3.png';
 import linuxLogo from '../assets/logos/4.png';
 import jwsLogo from '../assets/logos/5.png'; 
 import padesLogo from '../assets/logos/6.png'; 
@@ -16,7 +16,7 @@ const TrustSection = () => {
   const logos = [
     { name: 'NIST', image: nistLogo, alt: 'NIST SP 800-88 Standard' },
     { name: 'Python', image: pythonLogo, alt: 'Python Programming Language' },
-    { name: 'Rust', image: rustLogo, alt: 'Rust Programming Language' },
+    // { name: 'Rust', image: rustLogo, alt: 'Rust Programming Language' },
     { name: 'Linux', image: linuxLogo, alt: 'Linux Operating System' },
     { name: 'JWS', image: jwsLogo, alt: 'JSON Web Signature' },
     { name: 'PAdES', image: padesLogo, alt: 'PDF Advanced Electronic Signatures' },

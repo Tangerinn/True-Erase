@@ -1,6 +1,8 @@
 import React from 'react';
 import '../style/GetStarted.css'; // Adjust path based on your file structure
 
+const googleDriveLink = "https://drive.google.com/drive/folders/1U1E9BeIkLEq74Xijn03hu3dzYvv-ZFwA";
+
 const GetStarted = () => {
   return (
     <section id="get-started" className="get-started">

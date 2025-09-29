@@ -1,0 +1,25 @@
+
+
+{
+    "certificateVersion": "1.0",
+    "certificateId": "a4e9-8b1c-3d7f-5a0a-1b8e",
+    "issuerName": "True Erase by Everizon",
+    "issueTimestamp": "2025-09-29T08:51:01.820Z",
+    "deviceDetails": {
+      "deviceId": "DEV-KINGSTON-250SSD-PQR",
+      "deviceModel": "Kingston 250GB SSD",
+      "deviceSerial": "K58219A0987654",
+      "hostSystem": "Dell Vostro"
+    },
+    "wipeDetails": {
+      "wipeMethod": "NIST 800-88 Purge (ATA Secure Erase)",
+      "wipeStatus": "Success",
+      "wipeEnvironment": "Arch Linux"
+    },
+    "cryptographicProof": {
+      "dataHash": "b2c3d4e5f67890a1b2c3d4e5f67890a1b2c3d4e5f67890a1b2c3d4e5f67890a1",
+      "digitalSignature": "eyJhbGciOiJFUzI1NiJ9.eyJjZXJ0aWZpY2F0ZVZlcnNpb24iOiIxLjAiLCJjZXJ0aWZpY2F0ZUlkIjoiYTRlOS04YjFjLTNkN2YtNWEwYS0xYjhlIiwiaXNzdWVyTmFtZSI6IlRydWUgRXJhc2UgYnkgRXZlcml6b24iLCJpc3N1ZVRpbWVzdGFtcCI6IjIwMjUtMDktMjlUMDg6NTE6MDEuODIwWiIsImRldmljZURldGFpbHMiOnsiZGV2aWNlSWQiOiJERVYtS0lOR1NUT04tMjUwU1NELVBRUiIsImRldmljZU1vZGVsIjoiS2luZ3N0b24gMjUwR0IgU1NEIiwiZGV2aWNlU2VyaWFsIjoiSzU4MjE5QTA5ODc2NTQiLCJob3N0U3lzdGVtIjoiRGVsbCBWb3N0cm8ifSwid2lwZURldGFpbHMiOnsid2lwZU1ldGhvZCI6Ik5JU1QgODAwLTg4IFB1cmdlIChBVEEgU2VjdXJlIEVyYXNlKSIsIndpcGVTdGF0dXMiOiJTdWNjZXNzIiwid2lwZUVudmlyb25tZW50IjoiQXJjaCBMaW51eCJ9LCJjcnlwdG9ncmFwaGljUHJvb2YiOnsiZGF0YUhhc2giOiJiMmMzZDRlNWY2Nzg5MGExYjJjM2Q0ZTVmNjc4OTBhMWIyYzNkNGU1ZjY3ODkwYTFiMmMzZDRlNWY2Nzg5MGExIn19.D_LcmSqvmzX1nHXSrvxvFO48wt24LB867ZLE_uuIJwklNYCn5ON8bLoARwWfIJUNCDOhOEMiD1-ouJzhgGwH7g"      
+    }
+  }
+  
+  

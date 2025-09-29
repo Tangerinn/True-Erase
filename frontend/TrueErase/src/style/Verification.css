@@ -36,35 +36,64 @@
 }
 
 /* 1. Main Verification Section (The Centering Fix) */
+
+
+/* --- Main Verification Section --- */
 .verification {
-  /* 💥 FIX: Uses flex properties to center content horizontally and vertically */
-  min-height: 100vh; 
-  display: flex; 
-  flex-direction: column; 
-  justify-content: center; /* Centers vertically */
-  align-items: center; /* Centers horizontally (if content is smaller than viewport) */
-  
-  padding: 6rem 1.5rem 8rem; 
-  background-color: var(--color-background);
-  text-align: center;
+  /* Retain centering flex properties */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 6rem 1rem; /* Reduce side padding */
 }
 
 .verification__container {
-  /* Constrains the content block */
-  max-width: 600px; 
+  /* 💥 FIX 1: Make the entire content block much narrower */
+  max-width: 550px; /* Reduced from 600px/800px for a more focused portal */
   width: 100%;
   margin: 0 auto;
+}
+
+.verification__title {
+  font-size: 2.25rem; 
+  font-weight: 800;
+  
+  /* 💥 FIX: Increase the space between lines */
+  line-height: 1; /* A value between 1.2 and 1.4 is usually optimal for headers */
+  
+  /* Allow wrapping for long text */
+  white-space: normal; 
+
+  /* Remove the conflicting single-line properties that were causing clipping */
+  overflow: visible;
+  text-overflow: clip; 
+
+  color: var(--color-text-primary);
+}
+
+/* Subtitle below main title */
+.verification__header::after {
+  /* 💥 FIX 2: Ensure the subtitle text is also contained */
+  max-width: 500px; /* Constrain the width of the descriptive text */
+  margin-top: 0.75rem;
+  font-size: 1.0rem; 
 }
 
 .verification__header {
   margin-bottom: 3rem;
 }
 
-.verification__title {
-  font-size: 2.5rem; 
-  font-weight: 700;
-  color: var(--color-text-primary);
+/* --- Verification Header --- */
+.info-panel__text {
+  /* 💥 FIX: Ensure better line height for small font */
+  font-size: 0.9rem; /* Smallest font is usually cleanest */
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+  margin-bottom: 1.5rem; 
 }
+
 
 .verification__subtitle {
   color: var(--color-text-secondary);
@@ -248,3 +277,86 @@
     line-height: 1;
   }
 }
+
+/* --- New Grid Layout for Info Panel and Uploader --- */
+
+.verification__main-grid {
+  display: grid;
+  gap: 3rem; /* Space between the info panel and uploader */
+  
+  /* Desktop Layout: Two columns, Uploader slightly wider */
+  grid-template-columns: 1fr 1fr;
+  max-width: 900px; /* Allow the grid to take more horizontal space */
+  margin: 0 auto;
+}
+
+@media (max-width: 900px) {
+  .verification__main-grid {
+      /* Mobile Layout: Stack columns vertically */
+      grid-template-columns: 1fr;
+  }
+}
+
+
+/* --- Info Panel Styling --- */
+.verification__info-panel {
+  /* Increase padding to give the text room to breathe */
+  padding: 2rem; 
+  
+  /* Subtle border-radius to match the uploader box */
+  border-radius: var(--border-radius-lg);
+  border: 1px solid var(--color-border);
+  
+  /* Set text styles directly on the container */
+  text-align: left;
+  background-color: var(--color-surface);
+}
+
+.info-panel__title {
+  font-size: 1.6rem; /* Slightly larger title */
+  font-weight: 700;
+  color: var(--color-primary); /* Use a primary color for the title */
+  margin-bottom: 0.5rem;
+}
+
+.info-panel__text {
+  font-size: 0.95rem; /* Slightly smaller body text is cleaner */
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+  margin-bottom: 2rem; /* Add extra space above the badges */
+}
+
+.info-panel__badge-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.info-panel__badge {
+  padding: 0.4rem 0.8rem;
+  border-radius: 9999px; /* Pill shape */
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.info-panel__badge--nist {
+  /* Subtle coloring for NIST (Authority) */
+  background-color: #38a16933; /* Dark green background */
+  color: #48bb78; /* Light green text */
+}
+
+.info-panel__badge--crypto {
+  /* Coloring for JWS/PAdES (Security) */
+  background-color: var(--color-primary-light-alpha); /* Example: light blue transparent */
+  background-color: #4a90e233;
+  color: var(--color-primary); /* Use your primary blue color */
+}
+
+
+
+
+
+
+
+

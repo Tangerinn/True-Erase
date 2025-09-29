@@ -374,16 +374,45 @@ const Verification = () => {
             case 'success': return <SuccessView onReset={resetState} data={verifiedData} />;
             case 'failure': return <FailureView onReset={resetState} data={verifiedData} />;
             case 'verifying': return <VerifyingView />;
+            // default:
+            //     const dropzoneClass = `uploader__dropzone ${isDragging ? 'uploader__dropzone--dragging' : ''}`;
+            //     return (
+            //         <div className="uploader">
+            //             <label onDragOver={handleDragOver} onDragLeave={handleDragLeave} onDrop={handleDrop} className={dropzoneClass}>
+            //                 <input type="file" onChange={handleFileSelect} className="uploader__input" accept=".json" />
+            //                 <svg className="uploader__icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" /></svg>
+            //                 <p className="uploader__title">Upload Certificate to Verify</p>
+            //                 <p className="uploader__subtitle">Drag & drop or click to upload a .json file.</p>
+            //             </label>
+            //         </div>
+            //     );
             default:
                 const dropzoneClass = `uploader__dropzone ${isDragging ? 'uploader__dropzone--dragging' : ''}`;
                 return (
-                    <div className="uploader">
-                        <label onDragOver={handleDragOver} onDragLeave={handleDragLeave} onDrop={handleDrop} className={dropzoneClass}>
-                            <input type="file" onChange={handleFileSelect} className="uploader__input" accept=".json" />
-                            <svg className="uploader__icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" /></svg>
-                            <p className="uploader__title">Upload Certificate to Verify</p>
-                            <p className="uploader__subtitle">Drag & drop or click to upload a .json file.</p>
-                        </label>
+                    // 💥 Wrap both the info panel and the uploader in a grid/flex container
+                    <div className="verification__main-grid"> 
+                        
+                        {/* 💥 1. Verification Info Panel (New Content) */}
+                        <div className="verification__info-panel">
+                            <h3 className="info-panel__title">Built for Auditability.</h3>
+                            <p className="info-panel__text">
+                                This portal cryptographically verifies that your JSON certificate is authentic and has not been tampered with since being issued by the TrueErase application.
+                            </p>
+                            <div className="info-panel__badge-container">
+                                <span className="info-panel__badge info-panel__badge--nist">NIST SP 800-88 Compliant</span>
+                                <span className="info-panel__badge info-panel__badge--crypto">JWS/PAdES Certified</span>
+                            </div>
+                        </div>
+
+                        {/* 💥 2. Uploader Component (Existing functionality) */}
+                        <div className="uploader">
+                            <label onDragOver={handleDragOver} onDragLeave={handleDragLeave} onDrop={handleDrop} className={dropzoneClass}>
+                                <input type="file" onChange={handleFileSelect} className="uploader__input" accept=".json" />
+                                <svg className="uploader__icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" /></svg>
+                                <p className="uploader__title">Upload Certificate to Verify</p>
+                                <p className="uploader__subtitle">Drag & drop or click to upload a .json file.</p>
+                            </label>
+                        </div>
                     </div>
                 );
         }

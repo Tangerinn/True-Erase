@@ -1,0 +1,371 @@
+/* --- Add these styles to the bottom of Dashboard.css --- */
+
+.wipe-history h2 {
+    font-size: 1.875rem; /* text-3xl */
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    color: var(--color-text-primary);
+  }
+  
+  .history-table-container {
+      background-color: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--border-radius-lg);
+      overflow: hidden; /* Ensures the rounded corners apply to the table */
+  }
+  
+  .history-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+  }
+  
+  .history-table th, .history-table td {
+      padding: 1rem 1.5rem;
+      border-bottom: 1px solid var(--color-border);
+  }
+  
+  .history-table th {
+      font-size: 0.75rem; /* text-xs */
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--color-text-secondary);
+  }
+  
+  .history-table tbody tr:last-child td {
+      border-bottom: none;
+  }
+  
+  .status-badge {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-weight: 600;
+  }
+  
+  .status-badge--success {
+      background-color: rgba(34, 197, 94, 0.1); /* bg-green-500/10 */
+      color: #22c55e; /* text-green-500 */
+  }
+  
+  .action-buttons {
+      display: flex;
+      gap: 0.75rem;
+  }
+  
+  /* A smaller button variant for table actions */
+  .btn--small {
+      padding: 0.5rem 1rem;
+      font-size: 0.875rem;
+  }
+
+  /* --- Add these styles to the bottom of Dashboard.css --- */
+  .dashboard {
+    /* This will center the content vertically */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: calc(100vh - 80px); /* Full height minus approx navbar height */
+    padding: 2rem 1.5rem;
+    width: 100%;
+  }
+  .dashboard-hub {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    width: 100%;
+    max-width: 64rem; /* Sets a max-width to keep cards from getting too big */
+    margin: 0 auto; /* Horizontally centers the grid */
+  }
+  
+  .hub-card {
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-lg);
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    transition: all 0.2s ease-out;
+    cursor: pointer;
+  }
+  
+  .hub-card:hover {
+    transform: translateY(-4px);
+    background-color: var(--color-surface-hover);
+    border-color: var(--color-border-hover);
+    box-shadow: var(--action-glow);
+  }
+  
+  .hub-card__icon {
+    width: 2.5rem;
+    height: 2.5rem;
+    color: var(--color-text-secondary);
+  }
+  
+  .hub-card__title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+  }
+  
+  .hub-card__description {
+    font-size: 0.9rem;
+    color: var(--color-text-secondary);
+    flex-grow: 1; /* Ensures cards in a row have the same height */
+  }
+  
+  .dashboard__back-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--color-text-secondary);
+    cursor: pointer;
+    background: none; /* No background */
+    border: none;     /* No border */
+    padding: 0;       /* No padding */
+    margin-bottom: 2rem;
+    transition: color 0.2s;
+  }
+  
+  .dashboard__back-button:hover {
+    color: var(--color-text-primary);
+  }
+
+  /* --- Add these styles to the bottom of Dashboard.css --- */
+
+.modal-backdrop {
+    position: fixed;
+    inset: 0; /* A shortcut for top: 0; right: 0; bottom: 0; left: 0; */
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 50;
+    animation: fadeIn 0.3s ease-out forwards;
+  }
+  
+  .modal-content {
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-lg);
+    padding: 2rem;
+    max-width: 42rem; /* max-w-2xl */
+    width: 90%;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    animation: slideUp 0.4s ease-out forwards;
+  }
+  
+  .modal-header {
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+  
+  .modal-header h2 {
+    font-size: 1.5rem; /* text-2xl */
+    font-weight: 600;
+    color: var(--color-text-primary);
+  }
+  
+  .modal-body {
+    margin-top: 1.5rem;
+    flex-grow: 1;
+    overflow-y: auto; /* Adds a scrollbar if content is too long */
+  }
+  
+  .modal-body pre {
+    background-color: var(--color-background);
+    padding: 1rem;
+    border-radius: var(--border-radius-md);
+    font-size: 0.8rem;
+    color: var(--color-text-secondary);
+    white-space: pre-wrap; /* Allows long lines to wrap */
+    word-break: break-all;
+  }
+  
+  .modal-footer {
+    margin-top: 1.5rem;
+    text-align: right;
+  }
+
+  /* --- Add these styles to the bottom of Dashboard.css --- */
+
+/* Styles for the new, readable report modal */
+.report-header {
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+  
+  .report-section {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--color-border);
+  }
+  
+  .report-section__title {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--color-text-secondary);
+    margin-bottom: 1rem;
+  }
+  
+  .report-details {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0.5rem 1.5rem;
+    font-size: 0.9rem;
+  }
+  
+  .report-details dt {
+    color: var(--color-text-secondary);
+    text-align: right;
+  }
+  
+  .report-details dd {
+    color: var(--color-text-primary);
+    font-weight: 500;
+  }
+  
+  .modal-footer {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--color-border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .modal-footer a {
+    font-size: 0.875rem;
+    color: var(--color-text-secondary);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+  .modal-footer a:hover {
+    color: var(--color-text-primary);
+  }
+
+  /* --- Replace your old modal styles with this new block --- */
+
+.modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 50;
+    animation: fadeIn 0.3s ease-out forwards;
+  }
+  
+  .modal-content {
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-lg);
+    padding: 1.5rem; /* Reduced padding */
+    max-width: 32rem; /* Made the modal smaller */
+    width: 90%;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    animation: slideUp 0.4s ease-out forwards;
+  }
+  
+  .modal-body {
+    margin-top: 1rem;
+    flex-grow: 1;
+    overflow-y: auto;
+  }
+  
+  .report-header {
+    text-align: center;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+  
+  .report-header h2 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+  }
+  
+  .report-header p {
+    color: #22c55e; /* Green for success text */
+    font-weight: 500;
+    font-size: 0.9rem;
+    margin: 0;
+  }
+  
+  .report-section {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--color-border);
+  }
+  
+  .report-section__title {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-text-secondary);
+    margin-bottom: 1rem;
+  }
+  
+  .report-section__title svg {
+      width: 1.25rem; /* Correctly sizes the icons */
+      height: 1.25rem;
+  }
+  
+  .report-details {
+    display: grid;
+    grid-template-columns: 1fr 2fr; /* Adjusted grid for better alignment */
+    gap: 0.5rem 1rem;
+    font-size: 0.875rem;
+  }
+  
+  .report-details dt {
+    color: var(--color-text-secondary);
+    text-align: right;
+  }
+  
+  .report-details dd {
+    color: var(--color-text-primary);
+    font-weight: 500;
+    word-break: break-all;
+  }
+  
+  .modal-footer {
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--color-border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .modal-footer a {
+    font-size: 0.875rem;
+    color: var(--color-text-secondary);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+  
+  .modal-footer a:hover {
+    color: var(--color-text-primary);
+  }
+
+  .modal-body {
+    margin-top: 1.5rem;
+    flex-grow: 1;
+    overflow-y: auto; /* This makes the content scrollable */
+    padding-right: 0.5rem; /* Adds a little space for the scrollbar */
+  }
